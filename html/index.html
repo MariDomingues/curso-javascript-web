@@ -3,20 +3,22 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Nutrição</title>
-		<link rel="icon" href="favicon.ico" type="image/x-icon">
-		<link rel="stylesheet" type="text/css" href="css/reset.css">
-		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="icon" href="./../img/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="./../css/reset.css">
+		<link rel="stylesheet" type="text/css" href="./../css/index.css">
 	</head>
-	<body>
 
+	<body>
 		<header>
-			<div class="container">
-				<h1>Nutrição</h1>
+			<div class="container titulo">
+				<h1><a href="./index.html">Nutrição</a></h1>
 			</div>
 		</header>
+
 		<main>
 			<section class="container">
 				<h2>Meus pacientes</h2>
+				
 				<table>
 					<thead>
 						<tr>
@@ -27,16 +29,17 @@
 							<th>IMC</th>
 						</tr>
 					</thead>
+
 					<tbody id="tabela-pacientes">
-						<tr class="paciente" >
+						<tr class="paciente">
 							<td class="info-nome">Paulo</td>
-							<td class="info-peso">100</td>
+							<td class="info-peso">-100</td>
 							<td class="info-altura">2.00</td>
 							<td class="info-gordura">10</td>
 							<td class="info-imc">0</td>
 						</tr>
 
-						<tr class="paciente" >
+						<tr class="paciente">
 							<td class="info-nome">João</td>
 							<td class="info-peso">80</td>
 							<td class="info-altura">1.72</td>
@@ -44,7 +47,7 @@
 							<td class="info-imc">0</td>
 						</tr>
 
-						<tr class="paciente" >
+						<tr class="paciente">
 							<td class="info-nome">Erica</td>
 							<td class="info-peso">54</td>
 							<td class="info-altura">1.64</td>
@@ -59,7 +62,8 @@
 							<td class="info-gordura">24</td>
 							<td class="info-imc">0</td>
 						</tr>
-						<tr class="paciente" >
+
+						<tr class="paciente">
 							<td class="info-nome">Tatiana</td>
 							<td class="info-peso">46</td>
 							<td class="info-altura">1.55</td>
@@ -69,8 +73,13 @@
 					</tbody>
 				</table>
 
+				<button id="adicionar-paciente" class="botao bto-principal"><a href="./adicionarPaciente.html">Adicionar Paciente</a></button>
+				<button id="sincronizar-paciente" class="botao bto-principal">Sincronizar Paciente</button>
 			</section>
 		</main>
 
+		<script src="./../js/calcula-imc.js"></script>
+		<script src="./../js/adicionarPaciente.js"></script>
+		<script src="./../js/buscar-paciente.js"></script>
 	</body>
 </html>
