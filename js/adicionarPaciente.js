@@ -4,7 +4,7 @@ botaoAdicionar.addEventListener("click", function(event) {
 
     event.preventDefault();
 
-    const form = document.querySelector("form");
+    const form = document.querySelector("#form-adiciona");
 
     const mensagemErro = validaPaciente(form.altura.value, form.peso.value);
     if (mensagemErro.length > 0) {
@@ -13,12 +13,47 @@ botaoAdicionar.addEventListener("click", function(event) {
         return;
     }
     
-    adicionaPaciente(montaTR(getPacienteForm(form)));
+    adicionaPaciente(getPacienteForm(form));
+    //adicionaPaciente(montaTR(getPacienteForm(form)));
 
     form.reset();
-})
+});
 
-function adicionaPaciente(pacienteTr) {
+function adicionaPaciente(paciente) {
+
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            nome: paciente.nome,
+            peso: paciente.peso,
+            altura: paciente.altura,
+            gorduraCorporal: paciente.gordura
+        })
+    }
+
+    fetch("http://localhost:8080/paciente", options)
+        .then(response => {
+
+            // valida se a requisição falhou
+            if (!response.ok) {
+                return new Error('falhou a requisição') // cairá no catch da promise
+            }
+    
+            // verificando pelo status
+            if (response.status === 404) {
+                return new Error('não encontrou qualquer resultado')
+            }
+    
+            // retorna uma promise com os dados em JSON
+            return response.json()
+        });
+}
+
+/*function adicionaPaciente(pacienteTr) {
 
     const tabela = document.querySelector("index.html #tabela-pacientes");
     tabela.appendChild(pacienteTr);
@@ -42,7 +77,7 @@ function montaTR(pPaciente) {
     pacienteTr.appendChild(imcTd);
 
     return pacienteTr;
-}
+}*/
 
 function montaTD(pDado, pClasse) {
 
@@ -60,8 +95,7 @@ function getPacienteForm(pForm) {
         nome: pForm.nome.value,
         peso: pForm.peso.value,
         altura: pForm.altura.value,
-        gordura: pForm.gordura.value,
-        imc: calculaImc(peso, altura)
+        gordura: pForm.gordura.value
     }
 
     return paciente;
